@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}POSTS{% endblock title %}
+
+
+{% block content %}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url({{ post.img_url }})">
+    <div class="container position-relative px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                  <div class="post-heading">
+                      <h1>{{ post.title }}</h1>
+                      <h2 class="subheading">{{ post.subtitle }}</h2>
+                      <span class="meta">
+                        Posted by
+                        {{ post_author }} on {{ post.created_time }}
+                      </span>
+                  </div>
+              </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content-->
+<main class="mb-4">
+    <section>
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-preview">
+                          <a href="{{ url_for('post', post_id=post.id)}}">
+                              <h2 class="post-title">{{ post.title }}</h2>
+                              <h3 class="post-subtitle">{{ post.subtitle }}</h3>
+                          </a>
+                          <p class="post-meta">
+                            Posted by
+                            {{ post_author }} on {{ post.created_time }}
+                          </p>
+                          {% if post.created_time != post.updated_time %}
+                          <p class="post-meta">
+                            Updated on {{ post.updated_time }}
+                          </p>
+                          {% endif %}
+                        </div>
+                        <p>
+                          {{ ckeditor.load() }}
+                          {{ ckeditor.config(name='post.description') }}
+                          {{ post.description }}
+                        </p>
+                        {% if current_user.id == post.author_id %}
+                            <a href="{{ url_for('post_update', post_id=post.id) }}" class="btn btn-primary">UPDATE</a>
+                        {% elif current_user.id == 1 %}
+                            <a href="{{ url_for('post_update', post_id=post.id) }}" class="btn btn-primary">UPDATE</a>
+                            <a href="{{ url_for('post_delete', post_id=post.id) }}" class="btn btn-primary">DELETE</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+</main>
+{% endblock content %}

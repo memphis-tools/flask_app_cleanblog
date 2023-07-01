@@ -1,3 +1,9 @@
+.form-label {
+  font-family: "Open+San", sans-serif;
+  font-weight: 600;
+  font-style: bold;
+}
+
 @charset "UTF-8";
 /*!
 * Start Bootstrap - Clean Blog v6.0.8 (https://startbootstrap.com/theme/clean-blog)
