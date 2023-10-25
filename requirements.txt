@@ -57,6 +57,6 @@ SQLAlchemy==1.4.48
 SQLAlchemy-Utils==0.41.1
 tomli==2.0.1
 typing_extensions==4.7.0
-Werkzeug==2.3.6
+Werkzeug==3.0.1
 wrapt==1.15.0
 WTForms==3.0.1
